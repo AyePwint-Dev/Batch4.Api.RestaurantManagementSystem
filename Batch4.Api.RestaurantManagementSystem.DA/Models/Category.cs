@@ -1,10 +1,11 @@
 ﻿namespace Batch4.Api.RestaurantManagementSystem.DA.Models;
 
 [Table("Tbl_Category")]
-public class CategoryModel
+public class Category
 {
     [Key]
     public int CategoryId { get; set; }
     public string CategoryName { get; set; }    
     public string CategoryCode { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

@@ -9,4 +9,4 @@ public class OrderResponseModel
 public class OrderDetailResponseModel : OrderResponseModel
 {
     public List<OrderItemDetailModel> Items { get; set; }
-}
+}   

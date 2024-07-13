@@ -15,7 +15,7 @@ public class DA_Category
     public async Task<int> CreateCategory(CategoryRequestModel reqModel)
     {
         if (reqModel.CategoryName.IsNullOrEmpty()) return 0;
-        CategoryModel category = new CategoryModel()
+        Models.Category category = new Models.Category()
         {
             CategoryName = reqModel.CategoryName.Trim().ToUpper(),
             CategoryCode = GenerateCode(reqModel.CategoryName)
@@ -25,27 +25,27 @@ public class DA_Category
         return result;
     }
 
-    public async Task<List<CategoryModel>> GetAllCategories()
+    public async Task<List<Models.Category>> GetAllCategories()
     {
-        List<CategoryModel> list = await _db.Categories.ToListAsync();
+        List<Models.Category> list = await _db.Categories.ToListAsync();
         return list;
     }
 
-    public async Task<CategoryModel> GetCategoryById(int id)
+    public async Task<Models.Category> GetCategoryById(int id)
     {
-        CategoryModel? category = await _db.Categories.FirstOrDefaultAsync(x => x.CategoryId ==  id);
+        Models.Category? category = await _db.Categories.FirstOrDefaultAsync(x => x.CategoryId ==  id);
         return category;
     }
 
-    public async Task<CategoryModel> GetCategoryByCode(string code)
+    public async Task<Models.Category> GetCategoryByCode(string code)
     {
-        CategoryModel? category = await _db.Categories.FirstOrDefaultAsync(x => x.CategoryCode == code);
+        Models.Category? category = await _db.Categories.FirstOrDefaultAsync(x => x.CategoryCode == code);
         return category;
     }
 
     public async Task<int> DeleteCategory(int id)
     {
-        CategoryModel category = await GetCategoryById(id);
+        Models.Category category = await GetCategoryById(id);
         if (category == null) throw new InvalidDataException("no data found");
 
         _db.Categories.Remove(category);
@@ -54,9 +54,9 @@ public class DA_Category
         return result;
     }
 
-    public CategoryModel FindByName(string name)
+    public Models.Category FindByName(string name)
     {
-        CategoryModel category = _db.Categories.FirstOrDefault(x => x.CategoryName == name);
+        Models.Category category = _db.Categories.FirstOrDefault(x => x.CategoryName == name);
         return category;
     }
 

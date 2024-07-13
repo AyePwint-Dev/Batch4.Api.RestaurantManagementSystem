@@ -11,16 +11,14 @@ public class OrderController : ControllerBase
     public OrderController(BL_Order blOrder)
     {
         _blOrder = blOrder;
-    }
-
+    }    
     [HttpPost]
     public async Task<IActionResult> Create(OrderRequestModel orderRequest)
     {
         var model = await _blOrder.CreateOrder(orderRequest);
         if (model.InvoiceNo == null) return Ok("Order Creation Fail.");
         return Ok(model);
-    }
-
+    }    
     [HttpGet("invoiceNo")]
     public async Task<IActionResult> OrderDetail(string invoiceNo)
     {
@@ -33,6 +31,14 @@ public class OrderController : ControllerBase
     public async Task<IActionResult> ViewOrders()
     {
         var model = await _blOrder.ViewOrders();
+        return Ok(model);
+    }
+
+    [HttpGet("ViewOrderBill")]    
+    public async Task<IActionResult> ViewOrderBill(string invoiceNo)
+    {
+        var model = await _blOrder.ViewOrderBill(invoiceNo);
+        if (model is null) return Ok("No Bill found.");
         return Ok(model);
     }
 }

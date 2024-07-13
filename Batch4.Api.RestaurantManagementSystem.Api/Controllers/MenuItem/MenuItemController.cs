@@ -1,14 +1,17 @@
-﻿namespace Batch4.Api.RestaurantManagementSystem.Api.Controllers.MenuItem;
+﻿using Batch4.Api.RestaurantManagementSystem.BL.Services.Order;
+using Batch4.Api.RestaurantManagementSystem.DA.Models;
+
+namespace Batch4.Api.RestaurantManagementSystem.Api.Controllers.MenuItem;
 
 [Route("api/[controller]")]
 [ApiController]
 public class MenuItemController : ControllerBase
 {
-    private readonly BL_MenuItem _blMenuItem;
-
+    private readonly BL_MenuItem _blMenuItem;    
     public MenuItemController(BL_MenuItem blMenuItem)
     {
         _blMenuItem = blMenuItem;
+        
     }
 
     [HttpPost]
@@ -102,6 +105,6 @@ public class MenuItemController : ControllerBase
         {
             return BadRequest(e.Message);
         }
-    }
+    }    
 
 }

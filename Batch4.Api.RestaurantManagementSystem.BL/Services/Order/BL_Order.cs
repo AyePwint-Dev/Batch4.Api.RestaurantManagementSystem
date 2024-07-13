@@ -1,4 +1,5 @@
 ﻿using Batch4.Api.RestaurantManagementSystem.Shared;
+using Batch4.Api.RestaurantManagementSystem.Shared.Models.Order;
 
 namespace Batch4.Api.RestaurantManagementSystem.BL.Services.Order;
 
@@ -25,8 +26,12 @@ public class BL_Order
         return model;
     }
 
-    public async Task<List<OrderModel>> ViewOrders()
+    public async Task<List<DA.Models.Order>> ViewOrders()
     {
         return await _daOrder.ViewOrders();
+    }
+    public async Task<List<OrderBillRespondModel>> ViewOrderBill(string invoiceNo)
+    {
+        return await _daOrder.ViewOrderBill(invoiceNo);
     }
 }

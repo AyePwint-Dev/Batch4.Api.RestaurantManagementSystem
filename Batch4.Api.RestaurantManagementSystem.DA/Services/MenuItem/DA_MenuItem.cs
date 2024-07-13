@@ -16,32 +16,32 @@ public class DA_MenuItem
 
     public async Task<int> CreateMenuItem(MenuItemRequestModel reqModel)
     {
-        MenuItemModel menu = new MenuItemModel()
+        Models.MenuItem menu = new Models.MenuItem()
         {
             ItemName = reqModel.ItemName,
             ItemPrice = reqModel.ItemPrice,
             CategoryCode = reqModel.CategoryCode
         };
-        _db.MenuItem.Add(menu);
+        _db.MenuItems.Add(menu);
         int result = await _db.SaveChangesAsync();
         return result;
     }
 
-    public async Task<List<MenuItemModel>> GetAllMenuItem()
+    public async Task<List<Models.MenuItem>> GetAllMenuItem()
     {
-        List<MenuItemModel> list = await _db.MenuItem.ToListAsync();
+        List<Models.MenuItem> list = await _db.MenuItems.ToListAsync();
         return list;
     }
 
-    public async Task<MenuItemModel> GetMenuItemById(int id)
+    public async Task<Models.MenuItem> GetMenuItemById(int id)
     {
-        MenuItemModel item = await _db.MenuItem.FirstOrDefaultAsync(x => x.ItemId == id)!;
+        Models.MenuItem item = await _db.MenuItems.FirstOrDefaultAsync(x => x.ItemId == id)!;
         return item;
     }
 
-    public async Task<List<MenuItemModel>> GetMenuItemByCategoryCode(string categoryCode)
+    public async Task<List<Models.MenuItem>> GetMenuItemByCategoryCode(string categoryCode)
     {
-        var lst = await _db.MenuItem.Where(x => x.CategoryCode == categoryCode).ToListAsync();
+        var lst = await _db.MenuItems.Where(x => x.CategoryCode == categoryCode).ToListAsync();
         return lst;
     }
 
@@ -49,7 +49,7 @@ public class DA_MenuItem
     {
         var category = await _daCategory.GetCategoryByCode(reqModel.CategoryCode);
         if (category is null) return 0;
-        MenuItemModel item = await GetMenuItemById(id);
+        Models.MenuItem item = await GetMenuItemById(id);
         item.ItemName = reqModel.ItemName;
         item.ItemPrice = reqModel.ItemPrice;
         item.CategoryCode = reqModel.CategoryCode;
@@ -60,18 +60,18 @@ public class DA_MenuItem
 
     public async Task<int> DeleteMenuItem(int id)
     {
-        MenuItemModel item = await this.GetMenuItemById(id); ;
+        Models.MenuItem item = await this.GetMenuItemById(id); ;
         if (item == null) throw new InvalidDataException("No data found");
 
-        _db.MenuItem.Remove(item);
+        _db.MenuItems.Remove(item);
 
         int result = await _db.SaveChangesAsync();
         return result;
     }
 
-    public MenuItemModel FindByName(string name)
+    public Models.MenuItem FindByName(string name)
     {
-        MenuItemModel item = _db.MenuItem.FirstOrDefault(x => x.ItemName == name);
+        Models.MenuItem item = _db.MenuItems.FirstOrDefault(x => x.ItemName == name);
         return item;
     }
 }

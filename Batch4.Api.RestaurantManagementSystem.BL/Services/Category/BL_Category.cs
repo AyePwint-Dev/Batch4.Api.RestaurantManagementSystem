@@ -17,19 +17,19 @@ public class BL_Category
         return result;
     }
 
-    public async Task<List<CategoryModel>> GetAllCategories()
+    public async Task<List<DA.Models.Category>> GetAllCategories()
     {
         return await _daCategory.GetAllCategories();
     }
 
-    public async Task<CategoryModel> GetCategoryById(int id)
+    public async Task<DA.Models.Category> GetCategoryById(int id)
     {
         var category = await _daCategory.GetCategoryById(id);
         if (category == null) throw new InvalidDataException("no data found");
         return category;
     }
 
-    public async Task<CategoryModel> GetCategoryByCode(string code)
+    public async Task<DA.Models.Category> GetCategoryByCode(string code)
     {
         var category = await _daCategory.GetCategoryByCode(code);
         return category;

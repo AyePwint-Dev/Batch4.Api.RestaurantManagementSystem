@@ -23,18 +23,18 @@ public class BL_MenuItem
         return result;
     }
 
-    public async Task<List<MenuItemModel>> GetAllMenuItem()
+    public async Task<List<DA.Models.MenuItem>> GetAllMenuItem()
     {
         return await _daMenuItem.GetAllMenuItem();
     }
 
-    public async Task<MenuItemModel> GetMenuItemById(int id)
+    public async Task<DA.Models.MenuItem> GetMenuItemById(int id)
     {
         var item = await _daMenuItem.GetMenuItemById(id);
         return item;
     }
 
-    public async Task<List<MenuItemModel>> GetMenuItemsByCategoryCode(string categoryCode)
+    public async Task<List<DA.Models.MenuItem>> GetMenuItemsByCategoryCode(string categoryCode)
     {
         var lst = await _daMenuItem.GetMenuItemByCategoryCode(categoryCode);
         return lst;

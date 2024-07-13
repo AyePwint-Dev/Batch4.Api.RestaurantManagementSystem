@@ -6,9 +6,9 @@ public class AppDbContext:DbContext
     {
     }
 
-    public DbSet<CategoryModel> Categories { get; set; }
-    public DbSet<MenuItemModel> MenuItem { get; set; }
-    public DbSet<OrderModel> Orders { get; set; }
-    public DbSet<OrderDetailModel> OrderDetails { get; set; }
-
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<MenuItem> MenuItems { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<Tax> Taxes { get; set; }    
 }

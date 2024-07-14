@@ -13,3 +13,5 @@ global using Batch4.Api.RestaurantManagementSystem.Shared.DapperService;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Batch4.Api.RestaurantManagementSystem.Shared;
+global using Batch4.Api.RestaurantManagementSystem.BL.Services.Tax;
+global using Batch4.Api.RestaurantManagementSystem.DA.Services.Tax;
